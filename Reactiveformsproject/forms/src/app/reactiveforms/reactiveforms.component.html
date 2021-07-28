@@ -1,0 +1,25 @@
+<p>reactiveforms works!</p>
+<form [formGroup]="loginform">
+    <p>
+        <label>Email ID</label>
+        <input type="text" formControlName="mailid" />
+    </p>
+    <div *ngIf="!loginform.get('mailid')?.valid && (loginform.get('mailid')?.dirty || loginform.get('mailid')?.touched)" class="error" >
+        <div *ngIf="loginform.get('mailid')?.errors?.required" >
+            <small class="text-danger" >Email is required</small>
+        </div>
+        <div *ngIf="loginform.get('mailid')?.errors?.email" >
+            <small class="text-danger" >Invalid email address</small>
+        </div>
+    </div>
+    <p>
+        <label>Enter Password</label>
+        <input type="text" formControlName="pwd" />
+    </p>
+    <div *ngIf="!loginform.get('pwd')?.valid && (loginform.get('pwd')?.dirty || loginform.get('pwd')?.touched)" class="error" >
+        <div *ngIf="loginform.get('pwd')?.errors?.required" >
+            <small class="text-danger" >Password is required</small>
+        </div>
+    </div>
+    <button class="btn btn-success" type="submit" [disabled]="!loginform.valid" >Login</button>
+</form>
